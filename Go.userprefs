@@ -1,13 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\CameraAnim.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Go\MainMenu\Scripts\MainMenu.cs">
     <Files>
-      <File FileName="Assets\Standard Assets\Character Controllers\ManagerGameStates.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\BallControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\CameraFollowBall.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\BarrierCollision.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\BallRestart.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\CameraAnim.cs" Line="11" Column="1" />
+      <File FileName="Assets\Go\MainMenu\Scripts\MainMenu.cs" Line="25" Column="137" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
