@@ -35,7 +35,11 @@ public class MainMenu : MonoBehaviour {
 
 		// Display our buttons 
 		if (GUI.Button (new Rect (Screen.width * btn1_X, Screen.height * btn1_Y, Screen.width * btn1_largeur, Screen.height * btn1_hauteur), "",button1Texture)) {
-			print ("Start Game !!!");	
+			{
+				print ("Start Game !!!");
+				Application.LoadLevel("Game");
+			}
+
 		}
 		if (GUI.Button (new Rect (Screen.width * btn2_X, Screen.height * btn2_Y, Screen.width * btn2_largeur, Screen.height * btn2_hauteur), "",button2Texture)) {
 			print ("Join Game n° " + textFieldString);	

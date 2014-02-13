@@ -1,0 +1,32 @@
+Initialize engine version: 4.3.4f1 (e444f76e01cd)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [atiumdag.dll 8.14.10.678]
+    Renderer: ATI Mobility Radeon HD 3430
+    Vendor:   ATI
+    VRAM:     1648 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=1 INTZ=0 RAWZ=0 NULL=0 RESZ=1 SlowINTZ=1
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\GitHub\Go\Jeu2Go_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\GitHub\Go\Jeu2Go_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\GitHub\Go\Jeu2Go_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\GitHub\Go\Jeu2Go_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+- Completed reload, in  0.282 seconds
+desktop: 1440x900 60Hz; virtual: 1440x900 at 0,0
+<RI> Initializing input.
+XInput1_3.dll not found.
+<RI> Input initialized.
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1699)
+
+Start Game !!!
+ 
+(Filename: C:/BuildAgent/work/d3d49558e4d408f4/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 53)
+
+UnloadTime: 0.471231 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 646.
+Total: 1.311040 ms (FindLiveObjects: 0.052793 ms CreateObjectMapping: 0.016620 ms MarkObjects: 0.197487 ms  DeleteObjects: 0.056704 ms)
+

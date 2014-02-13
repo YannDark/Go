@@ -54,6 +54,7 @@
      <Compile Include="Assets\Go\Game\Scripts\CameraFollowBall.cs" />
      <Compile Include="Assets\Go\Game\Scripts\GuiTest.cs" />
      <Compile Include="Assets\Go\Game\Scripts\ManagerGameStates.cs" />
+     <Compile Include="Assets\Go\Game\SwitchScene.cs" />
      <Compile Include="Assets\Go\MainMenu\Scripts\MainMenu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
