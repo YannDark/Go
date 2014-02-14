@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Go\MainMenu\Scripts\MainMenu.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Go\Game\Scripts\MovePierreBlanche1.cs">
     <Files>
-      <File FileName="Assets\Go\MainMenu\Scripts\MainMenu.cs" Line="41" Column="16" />
+      <File FileName="Assets\Go\Game\Scripts\MovePierreBlanche1.cs" Line="100" Column="1" />
+      <File FileName="Assets\Go\Game\Scripts\MovePierreBlanche1.cs" Line="90" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

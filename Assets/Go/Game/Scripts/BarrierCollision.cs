@@ -14,7 +14,8 @@ public class BarrierCollision : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
+		// A chaque collision avec le goban, la piece n'est plus soumise aux forces
 		if (other.tag == "Player")
-						other.SendMessage ("RestartPosition");
+			other.rigidbody.isKinematic = true;
 	}
 }
