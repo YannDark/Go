@@ -2,28 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MovePierreBlanche1 : MonoBehaviour {
-	private GameObject maPiece;
 
-	private enum couleur{
-		Blanche,
-		Noire
-	};
-	private couleur color;
-	private bool[,] coord;
-	private float x,y,z;
+public class MovePierreBlanche1 : MonoBehaviour {
+
+	private List<Pierre> listePierreNoires;
+	private List<Pierre> listePierreBlanches;
+
+	private Grille g;
+	private Chaine c;
+
+	private couleur joueurEnCours;
+	
 	private int cptNoire;
 	private int cptBlanche;
 
 	// Use this for initialization
 	void Start () {
-		color = couleur.Noire;
-		coord = new bool [9, 9];
-		for (int i=0; i<9; i++) {
-			for(int j=0;j<9;j++){
-				coord[i,j]=false;
-			}
-		}
+
+		listePierreNoires = new List<Pierre>();
+		listePierreBlanches = new List<Pierre>();
+		g = new Grille ();
+
+		joueurEnCours = couleur.Noire;
+
 		cptNoire = 1;
 		cptBlanche = 1;
 
@@ -34,7 +35,7 @@ public class MovePierreBlanche1 : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown ("p")) {
 
-			if(color == couleur.Blanche)
+			if(joueurEnCours == couleur.Blanche)
 			{
 				if (cptBlanche>40)
 				{
@@ -42,12 +43,16 @@ public class MovePierreBlanche1 : MonoBehaviour {
 				}
 				else
 				{
-					print ("Pierre"+color+cptBlanche);
-					maPiece = GameObject.Find ("Pierre"+color+cptBlanche);
-					PoserPiece();
+					Pierre p = new Pierre ();
+					p.setCouleur (couleur.Blanche);
+					p.setObjetGraphique(GameObject.Find ("Pierre"+joueurEnCours+cptBlanche));
+					p.poser (g);
+
+					listePierreBlanches.Add(p);
+					print(p.getCouleur() + " " + listePierreBlanches.Count.ToString() + " (x="+p.getCoord().x + ";y=" +-p.getCoord().y+")");
 					cptBlanche++; 
 				}
-				color = couleur.Noire;
+				joueurEnCours = couleur.Noire;
 			}
 			else
 			{
@@ -57,27 +62,19 @@ public class MovePierreBlanche1 : MonoBehaviour {
 				}
 				else
 				{
-					print ("Pierre"+color+cptNoire);
-					maPiece = GameObject.Find ("Pierre"+color+cptNoire);
-					PoserPiece();
+
+					Pierre p = new Pierre ();
+					p.setCouleur (couleur.Noire);
+					p.setObjetGraphique(GameObject.Find ("Pierre"+joueurEnCours+cptBlanche));
+					p.poser (g);
+					listePierreNoires.Add(p);
+
+					print(p.getCouleur() + " " + listePierreNoires.Count.ToString()+ " (x="+p.getCoord().x + ";y=" +-p.getCoord().y+")");
 					cptNoire++;
 
 				}
-				color = couleur.Blanche;
+				joueurEnCours = couleur.Blanche;
 			}
 		}
-	}
-
-	void PoserPiece(){
-		do{
-			x = Random.Range (0,9);
-			y = 0.8f;
-			z = Random.Range (0,9);
-		}while(coord[(int)x,(int)z] == true);
-		
-		//maPiece.rigidbody.isKinematic=false;
-		//maPiece.rigidbody.useGravity = true;
-		coord[(int)x,(int)z] = true;
-		maPiece.transform.position = new Vector3(x,y,-z);
 	}
 }
