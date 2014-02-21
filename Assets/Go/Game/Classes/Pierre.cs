@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Pierre{
 	private int libertes;
 	private coordonnees coord;
+	private List<coordonnees> listCoordAdjacente;
 	public etat etat;
 	private couleur couleur;
 	public GameObject objetGraphique;
@@ -13,7 +16,8 @@ public class Pierre{
 		coord.x = 0;
 		coord.y = 0;
 		etat = etat.nonPosee;
-		couleur = couleur.Noire;
+		couleur = couleur.Indefinie;
+		listCoordAdjacente = new List<coordonnees> ();
 	}
 	public int getLibertes(){
 		return libertes;
@@ -62,44 +66,60 @@ public class Pierre{
 		setCoord (coord);
 
 		if(getCouleur() == couleur.Noire)
-			g.setValue(coord.x,coord.y,'N');
+			g.setValue(coord.x,coord.y,couleur.Noire);
 		else if(getCouleur() == couleur.Blanche)
-			g.setValue(coord.x,coord.y,'B');
+			g.setValue(coord.x,coord.y,couleur.Blanche);
 		
 		objetGraphique.transform.position = new Vector3(coord.x,0.8f,-(coord.y));
 	}
-	
-	public bool isChaineAdjacente(Chaine c)
-	{
+
+
+	public void setCoordHaut(Grille g){
 		coordonnees haut;
-		coordonnees bas;
-		coordonnees gauche;
-		coordonnees droite;
-		
-		
 		haut.x = this.getCoord ().x;
 		haut.y = this.getCoord ().y + 1;
-		
+
+		if (haut.y <= 8 && g.getGrille () [haut.x, haut.y] == getCouleur ())
+			listCoordAdjacente.Add (haut);
+	}
+
+	public void setCoordBas(Grille g){
+		coordonnees bas;
 		bas.x = this.getCoord ().x;
 		bas.y = this.getCoord ().y - 1;
-		
+
+		if (bas.y >= 0 && g.getGrille () [bas.x, bas.y] == getCouleur ())
+			listCoordAdjacente.Add (bas);
+	}
+
+	public void setCoordGauche(Grille g){
+		coordonnees gauche;
 		gauche.x = this.getCoord ().x -1;
 		gauche.y = this.getCoord ().y;
-		
+
+		if (gauche.x >= 0 && g.getGrille () [gauche.x, gauche.y] == getCouleur ())
+			listCoordAdjacente.Add (gauche);
+	}
+
+	public void setCoordDroite(Grille g){
+		coordonnees droite;
 		droite.x = this.getCoord ().x+1;
 		droite.y = this.getCoord ().y ;
-		
-		if ((c.getListCoord().Contains (haut) ||
-		     c.getListCoord().Contains (bas) ||
-		     c.getListCoord().Contains (gauche) ||
-		     c.getListCoord().Contains (droite)) &&
-		    couleur == this.getCouleur ()) 
-		{
-			c.addPierre(this);
-			return true;
-		}
-		else
-			return false;
+
+		if (droite.x <= 8 && g.getGrille () [droite.x, droite.y] == getCouleur ())
+			listCoordAdjacente.Add (droite);
+
 	}
-	
+
+	public List<coordonnees> getListCoordAdjacente(Grille g){
+		listCoordAdjacente.Clear ();
+
+		setCoordHaut(g);
+		setCoordBas(g);
+		setCoordGauche(g);
+		setCoordDroite(g);
+
+		return listCoordAdjacente;
+	}
+
 }

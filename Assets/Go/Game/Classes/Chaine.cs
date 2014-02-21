@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
-public class Chaine{
+public class Chaine {
 	private List<Pierre> pierreComposantChaine;
 	private List<coordonnees> listCoord;
 	private couleur couleur;
@@ -8,9 +9,9 @@ public class Chaine{
 	
 	
 	public Chaine(){
-		pierreComposantChaine = null;
-		listCoord = null;
-		couleur = couleur.Noire;
+		pierreComposantChaine = new List<Pierre>();
+		listCoord = new List<coordonnees>();
+		couleur = couleur.Indefinie;
 	}
 	
 	public void calculerLiberteTotal(){
@@ -26,6 +27,7 @@ public class Chaine{
 		return libertesTotal;
 	}
 	public void addPierre(Pierre p){
+		couleur = p.getCouleur ();
 		pierreComposantChaine.Add (p);
 		listCoord.Add (p.getCoord ());
 		libertesTotal =+ p.getLibertes();
@@ -43,7 +45,6 @@ public class Chaine{
 			
 			
 			libertesTotal =+ c.getLibertesTotal ();
-			c = null;
 			
 		}
 	}
@@ -52,39 +53,20 @@ public class Chaine{
 	{
 		return listCoord;
 	}
-	
-	
-	
-	public bool isPierreAdjacente(Pierre p)
+
+	public couleur getCouleur()
 	{
-		coordonnees haut;
-		coordonnees bas;
-		coordonnees gauche;
-		coordonnees droite;
-		
-		haut.x = p.getCoord ().x;
-		haut.y = p.getCoord ().y + 1;
-		
-		bas.x = p.getCoord ().x;
-		bas.y = p.getCoord ().y - 1;
-		
-		gauche.x = p.getCoord ().x -1;
-		gauche.y = p.getCoord ().y;
-		
-		droite.x = p.getCoord ().x+1;
-		droite.y = p.getCoord ().y ;
-		
-		if ((listCoord.Contains (haut) ||
-		     listCoord.Contains (bas) ||
-		     listCoord.Contains (gauche) ||
-		     listCoord.Contains (droite)) &&
-		    couleur == p.getCouleur ()) 
-		{
-			addPierre(p);
-			return true;
-		}
-		else
-			return false;
+		return couleur;
 	}
+
+	public List<Pierre> getPierreComposantChaine(){
+		return pierreComposantChaine;
+	}
+
+
+	
+	
+	
+
 	
 }
