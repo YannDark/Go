@@ -1,4 +1,7 @@
-﻿public class Grille{
+﻿using System.Collections;
+using System.Collections.Generic;
+
+public class Grille{
 	private couleur[,] grille;
 	
 	public Grille(){
@@ -28,6 +31,7 @@
 		return grille;
 	}
 	
+
 	public void isEye(){
 	}
 	

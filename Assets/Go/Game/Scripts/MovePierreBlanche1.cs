@@ -49,15 +49,17 @@ public class MovePierreBlanche1 : MonoBehaviour {
 					p.setCouleur (couleur.Blanche);
 					p.setObjetGraphique(GameObject.Find ("Pierre"+joueurEnCours+cptBlanche));
 					p.poser (g);
-
+					//p.setLibertes(p.getListCoordAdjacente(g).Count);
+					//print ("lib : " + p.getLibertes());
 					recalculerChaines(g,p,listeChaines);
 
-
-
-
-
-
-
+					/*foreach(Chaine c in listeChaines)
+					{
+						if (c.isTaken()){
+							c.remove();
+							listeChaines.Remove(c);
+						}
+					}*/
 
 					listePierreBlanches.Add(p);
 					print(p.getCouleur() + " " + listePierreBlanches.Count.ToString() + " (x="+p.getCoord().x + ";y=" +-p.getCoord().y+")");
@@ -73,15 +75,24 @@ public class MovePierreBlanche1 : MonoBehaviour {
 				}
 				else
 				{
-
 					Pierre p = new Pierre ();
 					p.setCouleur (couleur.Noire);
-					p.setObjetGraphique(GameObject.Find ("Pierre"+joueurEnCours+cptBlanche));
+					p.setObjetGraphique(GameObject.Find ("Pierre"+joueurEnCours+cptNoire));
 					p.poser (g);
-
 					recalculerChaines(g,p,listeChaines);
-					listePierreNoires.Add(p);
+					
+					/*foreach(Chaine c in listeChaines)
+					{
 
+						if (c.isTaken()){
+							c.remove();
+							listeChaines.Remove(c);
+						}
+					}*/
+						
+							
+
+					listePierreNoires.Add(p);
 					print(p.getCouleur() + " " + listePierreNoires.Count.ToString()+ " (x="+p.getCoord().x + ";y=" +-p.getCoord().y+")");
 					cptNoire++;
 
@@ -93,18 +104,22 @@ public class MovePierreBlanche1 : MonoBehaviour {
 
 	void recalculerChaines(Grille g,Pierre p,List<Chaine>listeChaines)
 	{
-		switch(p.getListCoordAdjacente(g).Count){
+		switch(p.getNbCoordAdjacenteMemeCouleur(g)){
 		case(1):
 			Chaine c11 = new Chaine();
 			foreach (Chaine c in listeChaines)
 			{	
-				if(c.getListCoord().Contains(p.getListCoordAdjacente(g)[0])){
-					c.addPierre(p);
-					c11 = c;
-					break;
+				foreach(coordonnees coord in p.getListCoordAdjacente(g))
+				{
+					if(c.getListCoord().Contains(coord) && p.getCouleur() == c.getCouleur()){
+						c.addPierre(p);
+						c11 = c;
+						break;
+					}
 				}
 			}
-			print (p.getListCoordAdjacente(g).Count.ToString() + " : " + c11.getPierreComposantChaine().Count.ToString());
+			Debug.Log ("switch 1");
+			c11.recalculLibertesTotal(g);
 			break;
 		case(2):
 			Chaine c21 = new Chaine();		
@@ -112,26 +127,29 @@ public class MovePierreBlanche1 : MonoBehaviour {
 			bool stillAdded = false;
 			foreach (Chaine c in listeChaines)
 			{	
-				if(c.getListCoord().Contains(p.getListCoordAdjacente(g)[0])||
-				   c.getListCoord().Contains(p.getListCoordAdjacente(g)[1]))
+				foreach(coordonnees coord in p.getListCoordAdjacente(g))
 				{
-					if(stillAdded)
+					if(c.getListCoord().Contains(coord) && p.getCouleur() == c.getCouleur())
 					{
-						c22 = c;
-						listeChaines.Remove(c);
-						break;
-					}
-					else
-					{
-						c.addPierre(p);
-						c21 = c;
-						stillAdded = true;
+						if(stillAdded)
+						{
+							c22 = c;
+							break;
+						}
+						else
+						{
+							c.addPierre(p);
+							c21 = c;
+							stillAdded = true;
+						}
 					}
 				}
 			}
+			Debug.Log ("switch 2");
 			c21.mergeChaine(c22);
+			listeChaines.Remove(c22);
 			c22 = null;
-			print (p.getListCoordAdjacente(g).Count + " : " + c21.getPierreComposantChaine().Count);
+			c21.recalculLibertesTotal(g);
 			break;
 		case(3):
 			Chaine c31 = new Chaine();		
@@ -140,35 +158,37 @@ public class MovePierreBlanche1 : MonoBehaviour {
 			int chaineMergees = 0;
 			foreach (Chaine c in listeChaines)
 			{	
-				if(c.getListCoord().Contains(p.getListCoordAdjacente(g)[0])||
-				   c.getListCoord().Contains(p.getListCoordAdjacente(g)[1])||
-				   c.getListCoord().Contains(p.getListCoordAdjacente(g)[2]))
+				foreach(coordonnees coord in p.getListCoordAdjacente(g))
 				{
-					if(chaineMergees==2)
+					if(c.getListCoord().Contains(coord) && p.getCouleur() == c.getCouleur())
 					{
-						c33 = c;
-						//listeChaines.Remove(c);
-						break;
-					}
-					else if(chaineMergees==1){
-						c32 = c;
-						
-						chaineMergees++;
-					}
-					else
-					{
-						c.addPierre(p);
-						c31 = c;
-						chaineMergees++;
+						if(chaineMergees==2)
+						{
+							c33 = c;
+							break;
+						}
+						else if(chaineMergees==1){
+							c32 = c;
+							
+							chaineMergees++;
+						}
+						else
+						{
+							c.addPierre(p);
+							c31 = c;
+							chaineMergees++;
+						}
 					}
 				}
 			}
-			
+			Debug.Log ("switch 3");
 			c31.mergeChaine(c32);
-			listeChaines.Remove(c32);	
 			c31.mergeChaine(c33);
-			listeChaines.Remove(c33);	
-			print (p.getListCoordAdjacente(g).Count + " : " +  c31.getPierreComposantChaine().Count);
+			listeChaines.Remove(c32);
+			c32 = null;
+			listeChaines.Remove(c33);
+			c33 = null;
+			c31.recalculLibertesTotal(g);
 			break;
 		case(4):
 			Chaine c41 = new Chaine();		
@@ -178,48 +198,53 @@ public class MovePierreBlanche1 : MonoBehaviour {
 			int chaineMergees4 = 0;
 			foreach (Chaine c in listeChaines)
 			{	
-				if(c.getListCoord().Contains(p.getListCoordAdjacente(g)[0])||
-				   c.getListCoord().Contains(p.getListCoordAdjacente(g)[1])||
-				   c.getListCoord().Contains(p.getListCoordAdjacente(g)[2])||
-				   c.getListCoord().Contains(p.getListCoordAdjacente(g)[3]))
+				foreach(coordonnees coord in p.getListCoordAdjacente(g))
 				{
-					if(chaineMergees4==3)
+					if(c.getListCoord().Contains(coord) && p.getCouleur() == c.getCouleur())
 					{
-						c44 = c;
-						
-						break;
-					}
-					else if(chaineMergees4==2){
-						c43 = c;
-						chaineMergees4++;
-					}
-					else if(chaineMergees4==1){
-						c42 = c;
-						chaineMergees4++;
-					}
-					else
-					{
-						c.addPierre(p);
-						c41 = c;
-						chaineMergees4++;
+						if(chaineMergees4==3)
+						{
+							c44 = c;
+							
+							break;
+						}
+						else if(chaineMergees4==2){
+							c43 = c;
+							chaineMergees4++;
+						}
+						else if(chaineMergees4==1){
+							c42 = c;
+							chaineMergees4++;
+						}
+						else
+						{
+							c.addPierre(p);
+							c41 = c;
+							chaineMergees4++;
+						}
 					}
 				}
 			}
-			
+			Debug.Log ("switch 4");
 			c41.mergeChaine(c42);
 			listeChaines.Remove(c42);
+			c42 = null;
 			c41.mergeChaine(c43);
 			listeChaines.Remove(c43);
+			c43 = null;
 			c41.mergeChaine(c44);
 			listeChaines.Remove(c44);
-			print (p.getListCoordAdjacente(g).Count + " : " + c41.getPierreComposantChaine().Count);
+			c44 = null;
+			c41.recalculLibertesTotal(g);
 			break;
 		default:
 			Chaine c5 = new Chaine();
 			c5.addPierre(p);
 			listeChaines.Add(c5);
+			c5.recalculLibertesTotal(g);
 			break;
 			
 		}
-		}
+
+	}
 }

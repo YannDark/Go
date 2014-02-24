@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class Chaine {
 	private List<Pierre> pierreComposantChaine;
 	private List<coordonnees> listCoord;
+	private List<coordonnees> listLibertes;
 	private couleur couleur;
 	private int libertesTotal;
 	
@@ -11,26 +13,40 @@ public class Chaine {
 	public Chaine(){
 		pierreComposantChaine = new List<Pierre>();
 		listCoord = new List<coordonnees>();
+		listLibertes = new List<coordonnees>();
 		couleur = couleur.Indefinie;
 	}
+
 	
-	public void calculerLiberteTotal(){
-		int i=0;
-		while (i < pierreComposantChaine.Count) {
-			libertesTotal =+ pierreComposantChaine[i].getLibertes();
-			i++;		
+	public void recalculLibertesTotal(Grille g){
+		Debug.Log (" pierreComposantChaine : " + pierreComposantChaine.Count);
+		listLibertes.Clear();
+		foreach (Pierre p in pierreComposantChaine) 
+		{
+			p.getListCoordAdjacente(g);
+			Debug.Log (" Pierre : (" + p.getCoord().x + ";" + p.getCoord().y + ") => " +  p.getListLibertes().Count);
+			foreach(coordonnees coord in p.getListLibertes())
+			{
+				if(listLibertes.Contains(coord)==false)
+					listLibertes.Add (coord);
+			}
+
 		}
-		
+
+		Debug.Log (" lib totales : " + listLibertes.Count);
+
 	}
-	
-	public int getLibertesTotal(){
-		return libertesTotal;
+
+
+	public void setLibertesTotal(int libertes)
+	{
+		libertesTotal = libertes;
 	}
+
 	public void addPierre(Pierre p){
 		couleur = p.getCouleur ();
 		pierreComposantChaine.Add (p);
 		listCoord.Add (p.getCoord ());
-		libertesTotal =+ p.getLibertes();
 	}
 	
 	public void mergeChaine(Chaine c)
@@ -42,10 +58,6 @@ public class Chaine {
 			
 			foreach (Pierre p in c.pierreComposantChaine)
 				pierreComposantChaine.Add (p);
-			
-			
-			libertesTotal =+ c.getLibertesTotal ();
-			
 		}
 	}
 	
@@ -63,7 +75,25 @@ public class Chaine {
 		return pierreComposantChaine;
 	}
 
+	public bool isTaken(){
+		if (getListLibertes().Count == 0)
+			return true;
+		else
+			return false;
+	}
 
+	public void remove(){
+		foreach (Pierre p in pierreComposantChaine) {
+			p.remove ();
+			pierreComposantChaine.Remove(p);
+		}
+
+			
+	}
+
+	public List<coordonnees> getListLibertes(){
+		return listLibertes;
+	}
 	
 	
 	
