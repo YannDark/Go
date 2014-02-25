@@ -1,6 +1,8 @@
 ﻿public enum couleur{
 	Blanche,
 	Noire,
+	PriseNoire,
+	PriseBlanche,
 	Indefinie
 };
 
