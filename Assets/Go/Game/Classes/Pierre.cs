@@ -6,6 +6,11 @@ using System.Collections.Generic;
 	/// Classe Pierre.
 /// </summary>
 public class Pierre{
+
+	// identifiants pour la BDD
+	private int idPion;
+	private int idGoban;
+
 	//les coordonnees x et y de la Pierre
 	private coordonnees coord;
 	// les coordonnées voisines de notre pierre (haut,bas,gauche,droite)
@@ -250,7 +255,21 @@ public class Pierre{
 		objetGraphique.transform.position = new Vector3(50f,0.8f,-50f);
 	}
 
+	/// <summary>
+	/// Gets the identifier goban.
+	/// </summary>
+	/// <returns>The identifier goban.</returns>
+	public int getIdGoban(){
+		return idGoban;
+	}
 
+	/// <summary>
+	/// Sets the identifier goban.
+	/// </summary>
+	/// <param name="id">Identifier.</param>
+	public void setIdGoban(int id){
+		idGoban = id;
+	}
 
 
 }
