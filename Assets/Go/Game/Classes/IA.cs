@@ -23,7 +23,7 @@ public class IA
 	}
 	
 	/* Fonction qui calcule le prochain coup / La profondeur représente le niveau de difficulté */
-	public void calcIA(Grille jeu, int profondeur)
+	public void calcIA(Grille grille, Pierre pierre, Goban goban, etatPartie etatPartie, int profondeur)
 	{
 		int i;
 		int j;
@@ -33,14 +33,16 @@ public class IA
 		int maxj = -1;
 		int alpha = NodesIA.MINEVAL;
 		int beta = NodesIA.MAXEVAL;
-		
+
+		//Mettre le compteur à zéro
+		evaluer_cnt = 0;
 		
 		//On met en place le joueur courant
-		joueurCourant = jeu.getTour();
+		joueurCourant = goban.getJoueurEnCours();
 		
 		//Si la profondeurondeur est nulle ou la partie est finie,
 		//on ne fait pas le calcul
-		if((profondeur != 0) || (!jeu.getFini()))
+		if((profondeur != 0) || ((etatPartie != etatPartie.Termine)))
 		{
 			//On parcourt les points du go
 			for(i = 0; i < sizeGo; i++)
@@ -51,10 +53,10 @@ public class IA
 					if(grille.isTaken(i, j))
 					{
 						//On simule qu'on joue cette case
-						jeu.jouer(i, j);
+						pierre.simuler(i, j);
 						
 						//Lancement de l'algorithme d'IA MiniMax
-						varTmp = calcMin(jeu, profondeur - 1, alpha, beta);
+						varTmp = calcMin(grille, pierre, profondeur - 1, alpha, beta);
 						
 						//Si ce score est plus grand alors c'est une simulation gagnant par rapport à la précédente
 						if(alpha < varTmp)
@@ -66,18 +68,18 @@ public class IA
 						}
 						
 						//On annule la simulation
-						jeu.annulerCoup(i, j);
+						pierre.annulerSimulation(i, j);
 					}
 				}
 			}
 		}
 		
 		//On jouera le coup maximal à la fin de la simulation
-		jeu.jouer(maxi, maxj);
+		pierre.poser(maxi, maxj);
 	}
 	
 	/* Fonctions pour de calcul du minimum : Beta */
-	public int calcMin(Jeu jeu, int profondeur, int alpha, int beta)
+	public int calcMin(Grille grille, Pierre pierre, int profondeur, int alpha, int beta)
 	{
 		int i;
 		int j;
@@ -86,14 +88,14 @@ public class IA
 		//Si on est à la profondeurondeur voulue, on retourne le score
 		if(profondeur == 0)
 		{
-			varTmp = evaluer(jeu);
+			varTmp = evaluer(pierre);
 			return varTmp;
 		}
 		
 		//Si la partie est finie, on retourne le score
-		if(jeu.getFini())
+		if(etatPartie == etatPartie.Termine)
 		{
-			varTmp = evaluer(jeu);
+			varTmp = evaluer(pierre);
 			return varTmp;
 		}
 		
@@ -105,12 +107,12 @@ public class IA
 				if(grille.isTaken(i, j))
 				{
 					//On joue le coup
-					jeu.jouer(i, j);
+					pierre.simuler(i, j);
 					
-					varTmp = calcMax(jeu, profondeur - 1, alpha, beta);
+					varTmp = calcMax(grille, pierre, profondeur - 1, alpha, beta);
 					
 					//On annule le coup
-					jeu.annulerCoup(i, j);
+					pierre.annulerSimulation(i, j);
 					
 					//Mis a jour de beta
 					if(beta > varTmp)
@@ -130,7 +132,7 @@ public class IA
 	}
 	
 	/* Fonctions pour de calcul du maximum : Alpha */
-	public int calcMax(Jeu jeu, int profondeur, int alpha, int beta)
+	public int calcMax(Grille grille, Pierre pierre, int profondeur, int alpha, int beta)
 	{
 		int i;
 		int j;
@@ -139,28 +141,28 @@ public class IA
 		//Si on est à la profondeurondeur voulue, on retourne le score
 		if(profondeur == 0)
 		{
-			varTmp = evaluer(jeu);
+			varTmp = evaluer(pierre);
 			return varTmp;
 		}
 
 		//Si la partie est finie, on retourne le score
-		if(jeu.getFini())
+		if(etatPartie == etatPartie.Termine)
 		{
-			varTmp = evaluer(jeu);
+			varTmp = evaluer(pierre);
 			return varTmp;
 		}
 		
 		for(i = 0; i < 3; i++)
 		{
-			for(j = 0; j < 3;j++)
+			for(j = 0; j < 3; j++)
 			{
-				if(jeu.estVide(i, j))
+				if(grille.isTaken(i, j))
 				{
-					jeu.jouer(i, j);
+					pierre.simuler(i, j);
 					
-					varTmp = calcMin(jeu, profondeur - 1, alpha, beta);
+					varTmp = calcMin(grille, pierre, profondeur - 1, alpha, beta);
 					
-					jeu.annulerCoup(i, j);
+					pierre.annulerSimulation(i, j);
 					
 					//Mis a jour de la valeur de alpha
 					if(alpha < varTmp)
@@ -179,7 +181,7 @@ public class IA
 	}
 	
 	/* Retourne l'état de la partie et le score */
-	public int evaluer(jeu jeu)
+	public int evaluer(Pierre pierre)
 	{
 		int score = 0;
 		
@@ -187,6 +189,9 @@ public class IA
 		int cntpion;
 		int i;
 		int j;
+
+		// Incrementer le compteur d'evaluation
+		evaluer_cnt++;
 		
 		//Si le jeu est fini
 		if(jeu.getFini())

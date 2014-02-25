@@ -26,7 +26,11 @@ public class Pion
 		this.couleurPion = CouleurPion;
 		this.etatPion = EtatPion;
 	}
-	
+
+	public int evaluer()
+	{
+	}
+
 	// Method Setter
 	public void setIdGoban(int IdGoban)
 	{

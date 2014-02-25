@@ -48,8 +48,13 @@
   <ItemGroup>
      <Compile Include="Assets\Go\BDD\connectionBDD.cs" />
      <Compile Include="Assets\Go\Game\Classes\Chaine.cs" />
+     <Compile Include="Assets\Go\Game\Classes\Goban.cs" />
      <Compile Include="Assets\Go\Game\Classes\Grille.cs" />
+     <Compile Include="Assets\Go\Game\Classes\IA.cs" />
+     <Compile Include="Assets\Go\Game\Classes\Joueur.cs" />
+     <Compile Include="Assets\Go\Game\Classes\Partie.cs" />
      <Compile Include="Assets\Go\Game\Classes\Pierre.cs" />
+     <Compile Include="Assets\Go\Game\Classes\Pion.cs" />
      <Compile Include="Assets\Go\Game\Classes\Types Custom.cs" />
      <Compile Include="Assets\Go\Game\Scripts\BallControl.cs" />
      <Compile Include="Assets\Go\Game\Scripts\BallPause.cs" />

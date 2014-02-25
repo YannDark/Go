@@ -5,7 +5,7 @@ using System;
 
 public enum etatPartie {Encours, Termine};
 
-public class Goban
+public class Partie
 {
 	// Fields
 	private int idPartie;
@@ -16,7 +16,7 @@ public class Goban
 	private DateTime heureFin;
 	
 	// Constructor with arguments.
-	public Goban(int IdPartie, int IdJoueurNoir, int IdJoueurBlanc, etatPartie EtatPartie, DateTime HeureDebut, DateTime HeureFin)
+	public Partie(int IdPartie, int IdJoueurNoir, int IdJoueurBlanc, etatPartie EtatPartie, DateTime HeureDebut, DateTime HeureFin)
 	{
 		this.idPartie = IdPartie;
 		this.idJoueurNoir = IdJoueurNoir;
