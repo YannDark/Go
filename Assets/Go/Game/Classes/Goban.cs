@@ -39,7 +39,7 @@ public class Goban
 	}
 	public void setJoueurEnCours(int JoueurEnCours)
 	{
-		this.joueurEnCOurs = JoueurEnCours;
+		this.joueurEnCours = JoueurEnCours;
 	}
 
 	// Method Getter
@@ -57,6 +57,6 @@ public class Goban
 	}
 	public int getJoueurEnCours()
 	{
-		return this.joueurEnCOurs;
+		return this.joueurEnCours;
 	}
 }

@@ -11,6 +11,8 @@ public class Partie
 	private int idPartie;
 	private int idJoueurNoir;
 	private int idJoueurBlanc;
+	private int scoreNoir;
+	private int scoreBlanc;
 	private etatPartie etatPartie;
 	private DateTime heureDebut;
 	private DateTime heureFin;
@@ -35,6 +37,14 @@ public class Partie
 	{
 		this.idJoueurBlanc = IdJoueurBlanc;
 	}
+	public void setScoreBlanc(int ScoreBlanc)
+	{
+		this.scoreBlanc = ScoreBlanc;
+	}
+	public void setScoreNoir(int ScoreNoir)
+	{
+		this.scoreNoir = ScoreNoir;
+	}
 	public void setEtatPartie(etatPartie EtatPartie)
 	{
 		this.etatPartie = EtatPartie;
@@ -56,6 +66,14 @@ public class Partie
 	public int getIdJoueurBlanc()
 	{
 		return this.idJoueurBlanc;
+	}
+	public int getScoreBlanc()
+	{
+		return this.scoreBlanc;
+	}
+	public int setScoreNoir()
+	{
+		return this.scoreNoir;
 	}
 	public etatPartie getEtatPartie()
 	{
