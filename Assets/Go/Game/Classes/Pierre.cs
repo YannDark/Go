@@ -129,6 +129,7 @@ public class Pierre{
 			g.setValue(coord.x,coord.y,couleur.Blanche);
 
 		// on positionne l'objet graphique sur notre goban
+		objetGraphique.renderer.enabled = true;
 		objetGraphique.transform.position = new Vector3(coord.x,0.8f,-(coord.y));
 
 		// on récupère ses coordonnes adjacentes
