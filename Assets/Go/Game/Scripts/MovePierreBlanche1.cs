@@ -41,7 +41,7 @@ public class MovePierreBlanche1 : MonoBehaviour {
 			{
 				if (cptBlanche>40)
 				{
-					print ("Plus de pièces blanches");
+					Debug.Log ("Plus de pièces blanches");
 				}
 				else
 				{
@@ -71,7 +71,7 @@ public class MovePierreBlanche1 : MonoBehaviour {
 			{
 				if (cptNoire>41)
 				{
-					print ("Plus de pièces noires");
+					Debug.Log ("Plus de pièces noires");
 				}
 				else
 				{
@@ -118,7 +118,6 @@ public class MovePierreBlanche1 : MonoBehaviour {
 					}
 				}
 			}
-			Debug.Log ("switch 1");
 			c11.recalculLibertesTotal(g);
 			break;
 		case(2):
@@ -141,11 +140,11 @@ public class MovePierreBlanche1 : MonoBehaviour {
 							c.addPierre(p);
 							c21 = c;
 							stillAdded = true;
+							break;
 						}
 					}
 				}
 			}
-			Debug.Log ("switch 2");
 			c21.mergeChaine(c22);
 			listeChaines.Remove(c22);
 			c22 = null;
@@ -169,19 +168,19 @@ public class MovePierreBlanche1 : MonoBehaviour {
 						}
 						else if(chaineMergees==1){
 							c32 = c;
-							
 							chaineMergees++;
+							break;
 						}
 						else
 						{
 							c.addPierre(p);
 							c31 = c;
 							chaineMergees++;
+							break;
 						}
 					}
 				}
 			}
-			Debug.Log ("switch 3");
 			c31.mergeChaine(c32);
 			c31.mergeChaine(c33);
 			listeChaines.Remove(c32);
@@ -211,21 +210,23 @@ public class MovePierreBlanche1 : MonoBehaviour {
 						else if(chaineMergees4==2){
 							c43 = c;
 							chaineMergees4++;
+							break;
 						}
 						else if(chaineMergees4==1){
 							c42 = c;
 							chaineMergees4++;
+							break;
 						}
 						else
 						{
 							c.addPierre(p);
 							c41 = c;
 							chaineMergees4++;
+							break;
 						}
 					}
 				}
 			}
-			Debug.Log ("switch 4");
 			c41.mergeChaine(c42);
 			listeChaines.Remove(c42);
 			c42 = null;

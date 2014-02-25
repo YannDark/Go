@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Pierre{
-	//private int libertes;
 	private coordonnees coord;
 	private List<coordonnees> listCoordAdjacente;
 	private List<coordonnees> listLibertes;
@@ -13,7 +12,6 @@ public class Pierre{
 	
 	public Pierre()
 	{
-		//libertes = 0;
 		coord.x = 0;
 		coord.y = 0;
 		etat = etat.nonPosee;
@@ -24,9 +22,6 @@ public class Pierre{
 	public List<coordonnees> getListLibertes(){
 		return listLibertes;
 	}
-	/*public void setLibertes(int l){
-		libertes = l;
-	}*/
 	
 	public coordonnees getCoord(){
 		return coord;
@@ -85,12 +80,9 @@ public class Pierre{
 
 		if (haut.y >= 0) {
 			listCoordAdjacente.Add (haut);
-			Debug.Log("haut :" + g.getGrille()[haut.x,haut.y].ToString());
+			//Debug.Log("haut :" + g.getGrille()[haut.x,haut.y].ToString());
 			if (g.getGrille () [haut.x, haut.y] == couleur.Indefinie)
 				listLibertes.Add (haut);
-				//libertes++;
-
-			//print(libertes);
 		}
 	}
 
@@ -104,8 +96,6 @@ public class Pierre{
 			//Debug.Log("bas :" + g.getGrille()[bas.x,bas.y].ToString());
 			if(g.getGrille()[bas.x,bas.y] == couleur.Indefinie)
 				listLibertes.Add (bas);
-				//libertes++;
-			//print(libertes);
 		}
 			
 	}
@@ -120,8 +110,6 @@ public class Pierre{
 			//Debug.Log("gauche :" + g.getGrille()[gauche.x,gauche.y].ToString());
 			if(g.getGrille()[gauche.x,gauche.y] == couleur.Indefinie)
 				listLibertes.Add (gauche);
-				//libertes++;
-			//print(libertes);
 		}
 	}
 
@@ -135,8 +123,6 @@ public class Pierre{
 			//Debug.Log("droite :" + g.getGrille()[droite.x,droite.y].ToString());
 			if(g.getGrille()[droite.x,droite.y] == couleur.Indefinie)
 				listLibertes.Add (droite);
-				//libertes++;
-			//print(libertes);
 
 		}
 
@@ -145,15 +131,12 @@ public class Pierre{
 	public List<coordonnees> getListCoordAdjacente(Grille g){
 		listCoordAdjacente.Clear ();
 		listLibertes.Clear ();
-		//libertes = 0;
 
 		setCoordHaut(g);
 		setCoordBas(g);
 		setCoordGauche(g);
 		setCoordDroite(g);
 
-		//Debug.Log ("("+ coord.x + ";" + coord.y + ") lib : " + libertes);
-		//setLibertes (libertes);
 
 		return listCoordAdjacente;
 	}

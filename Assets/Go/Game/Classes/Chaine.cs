@@ -24,7 +24,7 @@ public class Chaine {
 		foreach (Pierre p in pierreComposantChaine) 
 		{
 			p.getListCoordAdjacente(g);
-			Debug.Log (" Pierre : (" + p.getCoord().x + ";" + p.getCoord().y + ") => " +  p.getListLibertes().Count);
+			//Debug.Log (" Pierre : (" + p.getCoord().x + ";" + p.getCoord().y + ") => " +  p.getListLibertes().Count);
 			foreach(coordonnees coord in p.getListLibertes())
 			{
 				if(listLibertes.Contains(coord)==false)
