@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
-public class connectionBDD : MonoBehaviour {
+public class ConnectionBDD {
 
 	//Variables
 	private MySqlConnection connection;
@@ -16,7 +16,7 @@ public class connectionBDD : MonoBehaviour {
 	private string password;
 	
 	//Constructor
-	public connectionBDD()
+	public ConnectionBDD()
 	{
 		Initialize();
 	}

@@ -65,7 +65,8 @@ public class Pierre{
 			g.setValue(coord.x,coord.y,'N');
 		else if(getCouleur() == couleur.Blanche)
 			g.setValue(coord.x,coord.y,'B');
-		
+
+		objetGraphique.renderer.enabled = true;
 		objetGraphique.transform.position = new Vector3(coord.x,0.8f,-(coord.y));
 	}
 	
