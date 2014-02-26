@@ -60,6 +60,7 @@
      <Compile Include="Assets\Go\Game\Scripts\BallRestart.cs" />
      <Compile Include="Assets\Go\Game\Scripts\BarrierCollision.cs" />
      <Compile Include="Assets\Go\Game\Scripts\CameraAnim.cs" />
+     <Compile Include="Assets\Go\Game\Scripts\CameraControl.cs" />
      <Compile Include="Assets\Go\Game\Scripts\CameraFollowBall.cs" />
      <Compile Include="Assets\Go\Game\Scripts\ManagerGameStates.cs" />
      <Compile Include="Assets\Go\Game\Scripts\MovePierreBlanche1.cs" />
