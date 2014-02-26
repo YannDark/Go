@@ -16,3 +16,9 @@ public enum etat{
 	posee,
 	morte
 }
+
+public struct influences{
+	public float influenceNoire;
+	public float influenceBlanche;
+
+};

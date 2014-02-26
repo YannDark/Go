@@ -129,8 +129,32 @@ public class Pierre{
 			g.setValue(coord.x,coord.y,couleur.Blanche);
 
 		// on positionne l'objet graphique sur notre goban
+		objetGraphique.renderer.enabled = true;
 		objetGraphique.transform.position = new Vector3(coord.x,0.8f,-(coord.y));
 
+		// on récupère ses coordonnes adjacentes
+		getListCoordAdjacente (g);
+	}
+
+	public void simuler(Grille g,int x,int y){
+		coordonnees coord;
+		coord.x = x;
+		coord.y = y;
+		
+		// on lui attribue les coordonnees trouvees
+		setCoord (coord);
+		
+		// on repercute le couleur sur la grille
+		if(getCouleur() == couleur.Noire)
+			g.setValue(coord.x,coord.y,couleur.Noire);
+		else if(getCouleur() == couleur.Blanche)
+			g.setValue(coord.x,coord.y,couleur.Blanche);
+
+
+		// on positionne l'objet graphique sur notre goban
+		objetGraphique.renderer.enabled = true;
+		objetGraphique.transform.position = new Vector3(coord.x,0.8f,-(coord.y));
+		
 		// on récupère ses coordonnes adjacentes
 		getListCoordAdjacente (g);
 	}

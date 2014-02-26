@@ -62,6 +62,7 @@
      <Compile Include="Assets\Go\Game\Scripts\CameraAnim.cs" />
      <Compile Include="Assets\Go\Game\Scripts\CameraFollowBall.cs" />
      <Compile Include="Assets\Go\Game\Scripts\ManagerGameStates.cs" />
+     <Compile Include="Assets\Go\Game\Scripts\MouvementCamera.cs" />
      <Compile Include="Assets\Go\Game\Scripts\MovePierreBlanche1.cs" />
      <Compile Include="Assets\Go\MainMenu\Scripts\MainMenu.cs" />
  <Reference Include="System.Drawing">

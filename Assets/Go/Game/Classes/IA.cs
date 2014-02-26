@@ -14,10 +14,13 @@ public class IA
 {
 	private int idJoueurCourant;
 	private int evaluer_cnt;
-	private int sizeGo = 9;
+	private int sizeGo;
 	
 	public IA()
 	{
+		idJoueurCourant = 0;
+		evaluer_cnt = 0;
+		sizeGo = 9;
 	}
 	public void Dispose()
 	{
@@ -50,7 +53,7 @@ public class IA
 				for(j = 0; j < sizeGo;j++)
 				{
 					//Si la case est vide
-					if(grille.isTaken(i, j))
+					if(grille.isTaken(i, j) == false)
 					{
 						//On simule qu'on joue cette case
 						//pierre.simuler(i, j);

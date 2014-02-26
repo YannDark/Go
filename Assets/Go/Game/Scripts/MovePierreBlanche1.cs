@@ -4,7 +4,12 @@ using System.Collections.Generic;
 
 
 public class MovePierreBlanche1 : MonoBehaviour {
-	
+
+	//notre IA
+	private IA monIA;
+	// connection a la BDD
+	private connectionBDD cnxBDD;
+
 	// la liste des chaines existantes sur le plateau
 	private List<Chaine> listeChaines;
 
@@ -22,6 +27,7 @@ public class MovePierreBlanche1 : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		monIA = new IA ();
 		listeChaines = new List<Chaine> ();
 		g = new Grille ();
 
@@ -29,6 +35,13 @@ public class MovePierreBlanche1 : MonoBehaviour {
 
 		cptNoire = 1;
 		cptBlanche = 1;
+
+		/*cnxBDD = new connectionBDD ();
+
+		if(cnxBDD.OpenConnection ()==true)
+			Debug.Log("Ca ping !");
+		else
+			Debug.Log("Ca ping po du tout !");*/
 
 
 	}
@@ -48,6 +61,7 @@ public class MovePierreBlanche1 : MonoBehaviour {
 				}
 				else
 				{
+
 					// on cree une nouvelle pierre
 					Pierre p = new Pierre ();
 					// on lui affecte une couleur
@@ -306,6 +320,9 @@ public class MovePierreBlanche1 : MonoBehaviour {
 				
 			}
 		}
+		chaineADelete.remove ();
 		listeChaines.Remove(chaineADelete);
 	}
+
+
 }

@@ -126,6 +126,30 @@ public class Chaine {
 			return false;
 	}
 
+	/*public bool touche2Bords(){
+		int cpt;
+
+		foreach (coordonnees coord in listCoord) 
+		{
+			if (coord.x == 0)
+				cpt++;
+
+			if (coord.x == 8)
+				cpt++;
+
+			if (coord.y == 0)
+				cpt++;
+			
+			if (coord.y == 8)
+				cpt++;
+		}
+
+		if(cpt>=2)
+			return true;
+		else
+			return false;
+	}*/
+
 
 	/// <summary>
 	/// Remove la chaine

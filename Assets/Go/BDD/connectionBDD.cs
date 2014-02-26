@@ -24,10 +24,10 @@ public class connectionBDD : MonoBehaviour {
 	//Initialize values
 	private void Initialize()
 	{
-		server = "localhost"; //"labo.nantes.epsi.fr";
+		server = "labo.nantes.epsi.fr";
 		database = "goban";
-		uid = "root"; //"Epsi5";
-		password = ""; //"ProjetJeuDeGo";
+		uid = "Epsi5";
+		password = "ProjetJeuDeGo";
 		string connectionString;
 		connectionString = "server=" + server + ";" + "database=" + database + ";" + "uid=" + uid + ";" + "password=" + password + ";";
 		connection = new MySqlConnection(connectionString);
@@ -37,7 +37,7 @@ public class connectionBDD : MonoBehaviour {
 	/// Open connection to database
 	/// </summary>
 	/// <returns><c>true</c>, if connection was opened, <c>false</c> otherwise.</returns>
-	private bool OpenConnection()
+	public bool OpenConnection()
 	{
 		try
 		{
@@ -64,7 +64,7 @@ public class connectionBDD : MonoBehaviour {
 	/// Closes the connection.
 	/// </summary>
 	/// <returns><c>true</c>, if connection was closed, <c>false</c> otherwise.</returns>
-	private bool CloseConnection()
+	public bool CloseConnection()
 	{
 		try
 		{
