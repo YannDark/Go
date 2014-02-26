@@ -8,7 +8,7 @@ public class MovePierreBlanche1 : MonoBehaviour {
 	//notre IA
 	private IA ia;
 	// connection a la BDD
-	private connectionBDD cnxBDD;
+	private ConnectionBDD cnxBDD;
 
 	// la liste des chaines existantes sur le plateau
 	private List<Chaine> listeChaines;

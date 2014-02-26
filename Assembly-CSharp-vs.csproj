@@ -62,17 +62,16 @@
      <Compile Include="Assets\Go\Game\Scripts\CameraAnim.cs" />
      <Compile Include="Assets\Go\Game\Scripts\CameraFollowBall.cs" />
      <Compile Include="Assets\Go\Game\Scripts\ManagerGameStates.cs" />
-     <Compile Include="Assets\Go\Game\Scripts\MouvementCamera.cs" />
      <Compile Include="Assets\Go\Game\Scripts\MovePierreBlanche1.cs" />
      <Compile Include="Assets\Go\MainMenu\Scripts\MainMenu.cs" />
- <Reference Include="System.Drawing">
- <HintPath>Assets\Go\Plugins\System.Drawing.dll</HintPath>
- </Reference>
  <Reference Include="MySql.Data">
  <HintPath>Assets\Go\Plugins\MySql.Data.dll</HintPath>
  </Reference>
  <Reference Include="System.Data">
  <HintPath>Assets\Go\Plugins\System.Data.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Drawing">
+ <HintPath>Assets\Go\Plugins\System.Drawing.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

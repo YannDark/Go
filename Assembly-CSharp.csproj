@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Go\BDD\connectionBDD.cs" />
     <Compile Include="Assets\Go\Game\Classes\Chaine.cs" />
     <Compile Include="Assets\Go\Game\Classes\Goban.cs" />
     <Compile Include="Assets\Go\Game\Classes\Grille.cs" />
@@ -63,15 +62,16 @@
     <Compile Include="Assets\Go\Game\Scripts\ManagerGameStates.cs" />
     <Compile Include="Assets\Go\Game\Scripts\MovePierreBlanche1.cs" />
     <Compile Include="Assets\Go\MainMenu\Scripts\MainMenu.cs" />
-    <Reference Include="System.Drawing">
-      <HintPath>Assets\Go\Plugins\System.Drawing.dll</HintPath>
-    </Reference>
     <Reference Include="MySql.Data">
       <HintPath>Assets\Go\Plugins\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System.Data">
       <HintPath>Assets\Go\Plugins\System.Data.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing">
+      <HintPath>Assets\Go\Plugins\System.Drawing.dll</HintPath>
+    </Reference>
+    <Compile Include="Assets\Go\BDD\connectionBDD.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -81,4 +81,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Assets\Go\BDD\" />
+  </ItemGroup>
 </Project>
