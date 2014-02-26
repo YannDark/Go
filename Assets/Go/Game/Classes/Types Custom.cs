@@ -1,6 +1,7 @@
 ﻿public enum couleur{
 	Blanche,
-	Noire
+	Noire,
+	Indefinie
 };
 
 public struct coordonnees{

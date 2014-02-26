@@ -39,14 +39,13 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>D:/Install/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>D:/Install/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Go\BDD\ConnectionBDD.cs" />
      <Compile Include="Assets\Go\Game\Classes\Chaine.cs" />
      <Compile Include="Assets\Go\Game\Classes\Grille.cs" />
      <Compile Include="Assets\Go\Game\Classes\Pierre.cs" />
@@ -60,15 +59,6 @@
      <Compile Include="Assets\Go\Game\Scripts\ManagerGameStates.cs" />
      <Compile Include="Assets\Go\Game\Scripts\MovePierreBlanche1.cs" />
      <Compile Include="Assets\Go\MainMenu\Scripts\MainMenu.cs" />
- <Reference Include="MySql.Data">
- <HintPath>Assets\Go\Plugins\MySql.Data.dll</HintPath>
- </Reference>
- <Reference Include="System.Data">
- <HintPath>Assets\Go\Plugins\System.Data.dll</HintPath>
- </Reference>
- <Reference Include="System.Drawing">
- <HintPath>Assets\Go\Plugins\System.Drawing.dll</HintPath>
- </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
