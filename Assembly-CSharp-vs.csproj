@@ -46,8 +46,13 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Go\BDD\connectionBDD.cs" />
      <Compile Include="Assets\Go\Game\Classes\Chaine.cs" />
+     <Compile Include="Assets\Go\Game\Classes\Goban.cs" />
      <Compile Include="Assets\Go\Game\Classes\Grille.cs" />
+     <Compile Include="Assets\Go\Game\Classes\IA.cs" />
+     <Compile Include="Assets\Go\Game\Classes\Joueur.cs" />
+     <Compile Include="Assets\Go\Game\Classes\Partie.cs" />
      <Compile Include="Assets\Go\Game\Classes\Pierre.cs" />
      <Compile Include="Assets\Go\Game\Classes\Types Custom.cs" />
      <Compile Include="Assets\Go\Game\Scripts\BallControl.cs" />
@@ -57,8 +62,18 @@
      <Compile Include="Assets\Go\Game\Scripts\CameraAnim.cs" />
      <Compile Include="Assets\Go\Game\Scripts\CameraFollowBall.cs" />
      <Compile Include="Assets\Go\Game\Scripts\ManagerGameStates.cs" />
+     <Compile Include="Assets\Go\Game\Scripts\MouvementCamera.cs" />
      <Compile Include="Assets\Go\Game\Scripts\MovePierreBlanche1.cs" />
      <Compile Include="Assets\Go\MainMenu\Scripts\MainMenu.cs" />
+ <Reference Include="System.Drawing">
+ <HintPath>Assets\Go\Plugins\System.Drawing.dll</HintPath>
+ </Reference>
+ <Reference Include="MySql.Data">
+ <HintPath>Assets\Go\Plugins\MySql.Data.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Data">
+ <HintPath>Assets\Go\Plugins\System.Data.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

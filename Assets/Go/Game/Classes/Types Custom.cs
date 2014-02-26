@@ -1,6 +1,8 @@
 ﻿public enum couleur{
 	Blanche,
 	Noire,
+	PriseNoire,
+	PriseBlanche,
 	Indefinie
 };
 
@@ -14,3 +16,9 @@ public enum etat{
 	posee,
 	morte
 }
+
+public struct influences{
+	public float influenceNoire;
+	public float influenceBlanche;
+
+};
