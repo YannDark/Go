@@ -1,11 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Go\Game\Classes\IA.cs">
     <Files>
-      <File FileName="Temp\Compiled-Normal-Diffuse.shader" Line="1" Column="1" />
-      <File FileName="Assets\Go\Game\Classes\IA.cs" Line="1" Column="1" />
-      <File FileName="Assets\Go\Game\Scripts\CameraControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Go\Game\Classes\Pierre.cs" Line="1" Column="1" />
+      <File FileName="Assets\Go\Game\Classes\IA.cs" Line="190" Column="3" />
+      <File FileName="Assets\Go\Game\Scripts\CameraControl.cs" Line="13" Column="30" />
+      <File FileName="Assets\Go\Game\Classes\Pierre.cs" Line="132" Column="42" />
+      <File FileName="Assets\Go\Game\Classes\Grille.cs" Line="7" Column="15" />
+      <File FileName="Assets\Go\Game\Scripts\MovePierreBlanche1.cs" Line="19" Column="41" />
+      <File FileName="Assets\Go\Game\Classes\Types Custom.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
