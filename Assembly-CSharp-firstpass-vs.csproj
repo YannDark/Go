@@ -46,13 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Standard Assets\Character Controllers\BallControl.cs" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\BallPause.cs" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\BallRestart.cs" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\BarrierCollision.cs" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\CameraAnim.cs" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\CameraFollowBall.cs" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\ManagerGameStates.cs" />
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\General Scripts\ActivateTrigger.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />

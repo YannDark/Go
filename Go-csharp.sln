@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{5F075AE3-E1F9-D038-2BB8-C4632991F96F}") = "Go", "Assembly-CSharp-firstpass-vs.csproj", "{314B407B-8EC3-3EC2-FA71-597CBF8D970D}"
+Project("{5F075AE3-E1F9-D038-2BB8-C4632991F96F}") = "Go", "Assembly-CSharp-vs.csproj", "{4C36C00B-6EBF-51ED-F6C4-DB076A1B54CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{314B407B-8EC3-3EC2-FA71-597CBF8D970D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{314B407B-8EC3-3EC2-FA71-597CBF8D970D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{314B407B-8EC3-3EC2-FA71-597CBF8D970D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{314B407B-8EC3-3EC2-FA71-597CBF8D970D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C36C00B-6EBF-51ED-F6C4-DB076A1B54CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C36C00B-6EBF-51ED-F6C4-DB076A1B54CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C36C00B-6EBF-51ED-F6C4-DB076A1B54CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C36C00B-6EBF-51ED-F6C4-DB076A1B54CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																							GlobalSection(MonoDevelopProperties) = preSolution
+																																																																																	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
