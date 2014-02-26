@@ -1,14 +1,40 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\CameraAnim.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Go\Game\Classes\Grille.cs">
     <Files>
-      <File FileName="Assets\Standard Assets\Character Controllers\ManagerGameStates.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\BallControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\CameraFollowBall.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\BarrierCollision.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\BallRestart.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\CameraAnim.cs" Line="11" Column="1" />
+      <File FileName="Assets\Go\Game\Scripts\MovePierreBlanche1.cs" Line="38" Column="3" />
+      <File FileName="Assets\Go\Game\Classes\Grille.cs" Line="41" Column="3" />
+      <File FileName="Assets\Go\Game\Classes\Pierre.cs" Line="1" Column="1" />
+      <File FileName="Assets\Go\Game\Classes\Chaine.cs" Line="151" Column="5" />
+      <File FileName="Assets\Go\Game\Classes\Types Custom.cs" Line="22" Column="14" />
+      <File FileName="Assets\Go\BDD\connectionBDD.cs" Line="1" Column="1" />
+      <File FileName="Assets\Go\Game\Classes\Partie.cs" Line="1" Column="1" />
+      <File FileName="Assets\Go\Game\Classes\IA.cs" Line="71" Column="3" />
+      <File FileName="Assets\Go\Game\Classes\Goban.cs" Line="1" Column="1" />
+      <File FileName="Assets\Go\Game\Scripts\CameraFollowBall.cs" Line="1" Column="1" />
+      <File FileName="Assets\Go\Game\Scripts\BallPause.cs" Line="1" Column="1" />
+      <File FileName="Assets\Go\Game\Scripts\ManagerGameStates.cs" Line="1" Column="1" />
+      <File FileName="Assets\Go\MainMenu\Scripts\MainMenu.cs" Line="41" Column="5" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Go" expanded="True">
+              <Node name="Game" expanded="True">
+                <Node name="Classes" expanded="True">
+                  <Node name="Grille.cs" selected="True" />
+                </Node>
+                <Node name="Scripts" expanded="True" />
+              </Node>
+              <Node name="MainMenu" expanded="True">
+                <Node name="Scripts" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
