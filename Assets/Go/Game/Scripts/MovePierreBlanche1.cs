@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class MovePierreBlanche1 : MonoBehaviour {
 
 	//notre IA
-	private IA monIA;
+	private IA ia;
 	// connection a la BDD
 	private connectionBDD cnxBDD;
 
@@ -24,10 +24,14 @@ public class MovePierreBlanche1 : MonoBehaviour {
 	// le nombre de pierres blanches jouees
 	private int cptBlanche;
 
+	// les scores
+	private GameObject scoreNoir;
+	private GameObject scoreBlanc;
+
 	// Use this for initialization
 	void Start () {
 
-		monIA = new IA ();
+		ia = new IA ();
 		listeChaines = new List<Chaine> ();
 		g = new Grille ();
 
@@ -35,6 +39,14 @@ public class MovePierreBlanche1 : MonoBehaviour {
 
 		cptNoire = 1;
 		cptBlanche = 1;
+
+		scoreNoir = GameObject.Find ("GUI Text J1");
+		scoreNoir.guiText.text = "Joueur Noir\nPoints : 0";
+
+		scoreBlanc = GameObject.Find ("GUI Text J2");
+		scoreBlanc.guiText.text = "Joueur Blanc\nPoints : 0";
+
+
 
 		/*cnxBDD = new connectionBDD ();
 
@@ -73,6 +85,11 @@ public class MovePierreBlanche1 : MonoBehaviour {
 
 					// on recalcule chaque chaine (libertes + merge)
 					g.recalculerChaines(p,listeChaines);
+
+					// on compte le score
+					int sb = ia.evaluer(g,p);
+					scoreBlanc.guiText.text = "Joueur Blanc\nPoints : " + sb;
+
 					// on incrémente le compteur de pieces blanches jouees
 					cptBlanche++; 
 				}
@@ -100,6 +117,9 @@ public class MovePierreBlanche1 : MonoBehaviour {
 					p.poser (g);
 					// on recalcule chaque chaine (libertes + merge)
 					g.recalculerChaines(p,listeChaines);
+					// on compte le score
+					int sn = ia.evaluer(g,p);
+					scoreNoir.guiText.text = "Joueur Noir\nPoints : " + sn;
 					// on incrémente le compteur de pieces noires jouees
 					cptNoire++;
 				}
