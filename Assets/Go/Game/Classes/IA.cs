@@ -107,7 +107,7 @@ public class IA
 		{
 			for(j = 0; j < sizeGo; j++)
 			{
-				if(grille.isTaken(i, j))
+				if(grille.isTaken(i, j)==false)
 				{
 					//On joue le coup
 					//pierre.simuler(i, j);
@@ -159,7 +159,7 @@ public class IA
 		{
 			for(j = 0; j < sizeGo; j++)
 			{
-				if(grille.isTaken(i, j))
+				if(grille.isTaken(i, j)==false)
 				{
 					//pierre.simuler(i, j);
 					
