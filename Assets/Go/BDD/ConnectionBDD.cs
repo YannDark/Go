@@ -7,7 +7,7 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 
 public class ConnectionBDD {
-
+	
 	//Variables
 	private MySqlConnection connection;
 	private string server;
@@ -96,7 +96,7 @@ public class ConnectionBDD {
 		query.Parameters.AddWithValue( "@numeroCoup", numeroCoup );
 		query.Parameters.AddWithValue( "@natureCoup", natureCoup );
 		query.Parameters.AddWithValue( "@joueurEnCours", joueurEnCours );
-
+		
 		//open connection
 		if (this.OpenConnection())
 		{
