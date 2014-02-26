@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
-public class connectionBDD : MonoBehaviour {
+public class ConnectionBDD {
 
 	//Variables
 	private MySqlConnection connection;
@@ -16,7 +16,7 @@ public class connectionBDD : MonoBehaviour {
 	private string password;
 	
 	//Constructor
-	public connectionBDD()
+	public ConnectionBDD()
 	{
 		Initialize();
 	}
@@ -24,10 +24,10 @@ public class connectionBDD : MonoBehaviour {
 	//Initialize values
 	private void Initialize()
 	{
-		server = "labo.nantes.epsi.fr";
+		server = "localhost"; //"labo.nantes.epsi.fr";
 		database = "goban";
-		uid = "Epsi5";
-		password = "ProjetJeuDeGo";
+		uid = "root"; //"Epsi5";
+		password = ""; //"ProjetJeuDeGo";
 		string connectionString;
 		connectionString = "server=" + server + ";" + "database=" + database + ";" + "uid=" + uid + ";" + "password=" + password + ";";
 		connection = new MySqlConnection(connectionString);
@@ -37,7 +37,7 @@ public class connectionBDD : MonoBehaviour {
 	/// Open connection to database
 	/// </summary>
 	/// <returns><c>true</c>, if connection was opened, <c>false</c> otherwise.</returns>
-	public bool OpenConnection()
+	private bool OpenConnection()
 	{
 		try
 		{
@@ -64,7 +64,7 @@ public class connectionBDD : MonoBehaviour {
 	/// Closes the connection.
 	/// </summary>
 	/// <returns><c>true</c>, if connection was closed, <c>false</c> otherwise.</returns>
-	public bool CloseConnection()
+	private bool CloseConnection()
 	{
 		try
 		{
