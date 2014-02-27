@@ -64,8 +64,6 @@ public class MovePierreBlanche1 : MonoBehaviour {
 
 			if(joueurEnCours == couleur.Blanche)
 			{
-				g.faitLeMenage(listeChaines);
-
 				// si on a plus de pieces
 				if (cptBlanche>40)
 				{
@@ -93,13 +91,13 @@ public class MovePierreBlanche1 : MonoBehaviour {
 					// on incrémente le compteur de pieces blanches jouees
 					cptBlanche++; 
 				}
+				// on enlève les pierres prises
+				g.faitLeMenage(listeChaines,joueurEnCours);
 				// on passe au joueur suivant
 				joueurEnCours = couleur.Noire;
 			}
 			else if(joueurEnCours == couleur.Noire)
 			{
-				g.faitLeMenage(listeChaines);
-
 				// si on a plus de pieces
 				if (cptNoire>41)
 				{
@@ -123,6 +121,8 @@ public class MovePierreBlanche1 : MonoBehaviour {
 					// on incrémente le compteur de pieces noires jouees
 					cptNoire++;
 				}
+				// on enlève les pierres prises
+				g.faitLeMenage(listeChaines,joueurEnCours);
 				// on passe au joueur suivant
 				joueurEnCours = couleur.Blanche;
 			}

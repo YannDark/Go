@@ -114,11 +114,35 @@ public class Pierre{
 		coordonnees coord;
 
 		// on cherche aleatoirement des coordonnées jusqu'a ce qu'elle soit libre
-		do{
-			coord.x = Random.Range (0,9);
-			coord.y = Random.Range (0,9);
-		}while(g.isTaken(coord.x,coord.y));
-
+		if (g.isTaken (2, 2) == false) 
+		{
+			coord.x = 2;
+			coord.y = 2;
+		} 
+		else if (g.isTaken (6, 2) == false) 
+		{
+			coord.x = 6;
+			coord.y = 2;
+		}
+		else if (g.isTaken (6, 6) == false) 
+		{
+			coord.x = 6;
+			coord.y = 6;
+		} 
+		else if (g.isTaken (2, 6) == false) 
+		{
+			coord.x = 2;
+			coord.y = 6;
+		} 
+		else 
+		{
+			coord = g.findMeilleureInfluenceAJouer(getCouleur());
+			/*do 
+			{
+				coord.x = Random.Range (0, 9);
+				coord.y = Random.Range (0, 9);
+			} while(g.isTaken(coord.x,coord.y));*/
+		}
 		// on lui attribue les coordonnees trouvees
 		setCoord (coord);
 
@@ -172,7 +196,8 @@ public class Pierre{
 		if (haut.y >= 0) {
 			listCoordAdjacente.Add (haut);
 			// si cette coordonnée est libre, on l'ajoute aussi a la liste des libertes de notre Pierre
-			if (g.getGrille () [haut.x, haut.y] == couleur.Indefinie)
+			if ((g.getGrille () [haut.x, haut.y] == couleur.Indefinie)||
+			    (g.getGrille () [haut.x, haut.y] == getCouleurPrise()))
 				listLibertes.Add (haut);
 		}
 	}
@@ -189,7 +214,8 @@ public class Pierre{
 		if (bas.y <= 8) {
 			listCoordAdjacente.Add (bas);
 			// si cette coordonnée est libre, on l'ajoute aussi a la liste des libertes de notre Pierre
-			if(g.getGrille()[bas.x,bas.y] == couleur.Indefinie)
+			if((g.getGrille()[bas.x,bas.y] == couleur.Indefinie)||
+			  (g.getGrille () [bas.x, bas.y] == getCouleurPrise()))
 				listLibertes.Add (bas);
 		}
 			
@@ -208,7 +234,8 @@ public class Pierre{
 		if (gauche.x >= 0) {
 			listCoordAdjacente.Add (gauche);
 			// si cette coordonnée est libre, on l'ajoute aussi a la liste des libertes de notre Pierre
-			if(g.getGrille()[gauche.x,gauche.y] == couleur.Indefinie)
+			if((g.getGrille()[gauche.x,gauche.y] == couleur.Indefinie)||
+			  (g.getGrille () [gauche.x, gauche.y] == getCouleurPrise()))
 				listLibertes.Add (gauche);
 		}
 	}
@@ -226,7 +253,8 @@ public class Pierre{
 		if (droite.x <= 8) {
 			listCoordAdjacente.Add (droite);
 			// si cette coordonnée est libre, on l'ajoute aussi a la liste des libertes de notre Pierre
-			if(g.getGrille()[droite.x,droite.y] == couleur.Indefinie)
+			if((g.getGrille()[droite.x,droite.y] == couleur.Indefinie)||
+				(g.getGrille () [droite.x, droite.y] == getCouleurPrise()))
 				listLibertes.Add (droite);
 
 		}
@@ -293,6 +321,20 @@ public class Pierre{
 	/// <param name="id">Identifier.</param>
 	public void setIdGoban(int id){
 		idGoban = id;
+	}
+
+	/// <summary>
+	/// Determine la couleur associée a ses acquisitions (Noir = priseNoire et Blanc = priseBlanc).
+	/// </summary>
+	/// <returns>The couleur prise.</returns>
+	public couleur getCouleurPrise()
+	{
+		if (getCouleur() == couleur.Noire)
+			return couleur.PriseNoire;
+		else if (getCouleur() == couleur.Blanche)
+			return couleur.PriseBlanche;
+		else
+			return couleur.Indefinie;
 	}
 
 

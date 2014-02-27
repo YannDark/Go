@@ -201,10 +201,7 @@ public class Grille{
 			}
 		}
 	}
-	
 
-	public void isEye(){
-	}
 
 	/// <summary>
 	/// On redessine toutes les chaines suite a la pose de la pierre
@@ -397,27 +394,106 @@ public class Grille{
 		
 	}
 
-	public void faitLeMenage(List<Chaine>listeChaines){
-		Chaine chaineADelete = new Chaine();
+	/// <summary>
+	/// Fait le menage en supprimant les pierres prises
+	/// </summary>
+	/// <param name="listeChaines">Liste chaines.</param>
+	/// <param name="encours">la couleur Encours.</param>
+	public void faitLeMenage(List<Chaine>listeChaines, couleur encours){
+		List<Chaine> chainesADelete = new List<Chaine>();
 		
 		foreach(Chaine c in listeChaines)
 		{
+			// pour chaque chaine on s'assure qu'elle soit prise
 			if (c.isTaken()){
 				foreach(coordonnees coord in c.getListCoord())
 				{
+					// si c'etait une chaine noire , on passe la case en priseBlanche
 					if (c.getCouleur() == couleur.Noire)
 						this.getGrille()[coord.x,coord.y] = couleur.PriseBlanche;
-					else
+					// si c'etait une chaine blanche , on passe la case en priseNoire
+					else if (c.getCouleur() == couleur.Blanche)
 						this.getGrille()[coord.x,coord.y] = couleur.PriseNoire;
-				}	
-				chaineADelete = c ;
-				Debug.Log ("DEGAGE !!!!");
-				break;
-				
+				}
+				// on ajoute la chaine a la liste des chaines a supprimer
+				chainesADelete.Add(c) ;				
 			}
 		}
-		chaineADelete.remove ();
-		listeChaines.Remove(chaineADelete);
+
+		// on vérifie qu'il ne s'agisse pas d'un sucide
+		foreach (Chaine cd in chainesADelete) 
+		{
+			/*if (cd.getCouleur()==encours)
+			{
+				Debug.Log ("Sucide !");
+			}
+			else
+			{*/
+				cd.remove ();
+				listeChaines.Remove (cd);
+				Debug.Log ("DEGAGE !!!!");
+			//}
+		}
+	}
+
+	/// <summary>
+	/// Finds the meilleure influence A jouer.
+	/// </summary>
+	/// <returns>The meilleure influence A jouer.</returns>
+	/// <param name="coul">la couleur en cours</param>
+	public coordonnees findMeilleureInfluenceAJouer(couleur coul)
+	{
+		coordonnees reference;
+
+		// on initialise l'influence de référence avec une coordonnée libre au hasard
+		do 
+		{
+			reference.x = Random.Range (0, 9);
+			reference.y = Random.Range (0, 9);
+		} while(isTaken(reference.x,reference.y));
+
+
+		// on parcourt toutes les cases libres
+		for (int i=0; i<9; i++) {
+			for(int j=0;j<9;j++){
+				if(!isTaken(i,j))
+				{
+					// si c'est noir qui joue
+					if(coul == couleur.Noire)
+					{
+						// influence courante = influence de noir - influence de blanc
+						float influenceCourante = grilleInfluences[i,j].influenceNoire - grilleInfluences[i,j].influenceBlanche;
+						// influence de reference = influence de noir de reference - influence de blanc de reference
+						float influenceReference = grilleInfluences[reference.x,reference.y].influenceNoire - grilleInfluences[reference.x,reference.y].influenceBlanche;
+
+						// si l'influence courante est plus serree que celle de reference alors on la retient
+						if((influenceCourante <=  influenceReference) && influenceCourante >= 0)
+						{
+								reference.x = i;
+								reference.y = j;
+						
+						}
+					}
+					// si c'est blanc qui joue
+					else if(coul == couleur.Blanche)
+					{
+						// influence courante = influence de blanc - influence de noir
+						float influenceCourante = grilleInfluences[i,j].influenceBlanche - grilleInfluences[i,j].influenceNoire ;
+						// influence de reference = influence de blanc de reference - influence de noir de reference
+						float influenceReference = grilleInfluences[reference.x,reference.y].influenceBlanche - grilleInfluences[reference.x,reference.y].influenceNoire;
+
+						// si l'influence courante est plus serree que celle de reference alors on la retient
+						if((influenceCourante <=  influenceReference) && influenceCourante >= 0)
+						{
+							reference.x = i;
+							reference.y = j;
+							
+						}
+					}
+				}
+			}
+		}
+		return reference;
 	}
 
 	

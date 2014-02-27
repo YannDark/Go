@@ -8,9 +8,9 @@ using System.Collections;
 public class CameraControl : MonoBehaviour
 {
 	// Vars
-	public float turnSpeed = 0.5f;	
-	public float panSpeed = 0.5f;	
-	public float zoomSpeed = 0.5f;	
+	public float turnSpeed = -12.5f;	
+	public float panSpeed = 12.5f;	
+	public float zoomSpeed = 12.5f;	
 	private Vector3 mouseOrigin;	
 	private bool isPanning;	
 	private bool isRotating;	
