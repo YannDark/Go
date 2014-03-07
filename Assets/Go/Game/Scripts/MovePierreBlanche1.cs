@@ -28,9 +28,14 @@ public class MovePierreBlanche1 : MonoBehaviour {
 	private GameObject scoreNoir;
 	private GameObject scoreBlanc;
 
+
+	// les pseudos
+	public static string pseudoNoir;
+	public static string pseudoBlanc;
 	// Use this for initialization
 	void Start () {
-
+		Debug.Log (MainMenu.numeroPartie);
+		Debug.Log (MainMenu.pseudo);
 		ia = new IA ();
 		listeChaines = new List<Chaine> ();
 		g = new Grille ();
@@ -41,10 +46,10 @@ public class MovePierreBlanche1 : MonoBehaviour {
 		cptBlanche = 1;
 
 		scoreNoir = GameObject.Find ("GUI Text J1");
-		scoreNoir.guiText.text = "Joueur Noir\nPoints : 0";
+		scoreNoir.guiText.text = "Joueur Noir\n" + pseudoNoir + "\nPoints : 0";
 
 		scoreBlanc = GameObject.Find ("GUI Text J2");
-		scoreBlanc.guiText.text = "Joueur Blanc\nPoints : 0";
+		scoreBlanc.guiText.text = "Joueur Blanc\n" + pseudoBlanc + "\nPoints : 0";
 
 
 

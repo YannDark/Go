@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
@@ -558,5 +559,25 @@ public class ConnectionBDD {
 			}
 		}
 		return response;
+	}
+
+	public string GetPseudoWithIdPartie(int idPartie)
+	{
+		if (this.OpenConnection())
+		{
+			using (MySqlCommand cmd = new MySqlCommand("SELECT j.nom FROM goban.Partie p JOIN goban.Joueurs j ON p.idJoueurNoir = j.idJoueur WHERE idPartie = @idPartie;", connection))
+			{
+				cmd.Parameters.AddWithValue("@idPartie", idPartie);
+				using (MySqlDataReader reader = cmd.ExecuteReader())
+				{
+					StringBuilder sb = new StringBuilder();
+					while (reader.Read())
+						sb.Append(reader.GetString(0).ToString());
+					
+					return sb.ToString();
+				}
+			}
+		}
+		return "";
 	}
 }

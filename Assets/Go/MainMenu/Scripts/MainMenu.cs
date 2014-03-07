@@ -6,12 +6,11 @@ public class MainMenu : MonoBehaviour {
 
 	public Texture backgroundTexture;
 
-	private string pseudo = "";
-	private string numeroPartie = "";
+	public static string pseudo = "";
+	public static string numeroPartie = "";
 
 	//connexion à la BDD
 	private ConnectionBDD bdd;
-
 
 	void OnGUI(){
 		bdd = new ConnectionBDD();
@@ -42,6 +41,7 @@ public class MainMenu : MonoBehaviour {
 			else{
 				if(pseudo != "" && pseudo != "pseudo"){
 					bdd.InsertJoueur(pseudo);
+					MovePierreBlanche1.pseudoNoir = pseudo;
 					Application.LoadLevel("Game");
 					print ("Insertion réussi en théorie");
 				}
@@ -61,7 +61,15 @@ public class MainMenu : MonoBehaviour {
 		{
 			if(numeroPartie != "" && numeroPartie != "0" && pseudo != "" && pseudo != "pseudo"){
 				print ("on est bon pour le numéro de partie");
-				Application.LoadLevel("Game");
+				MovePierreBlanche1.pseudoNoir = bdd.GetPseudoWithIdPartie(int.Parse(numeroPartie));
+				if (MovePierreBlanche1.pseudoNoir != "")
+				{
+					MovePierreBlanche1.pseudoBlanc = pseudo;
+					Application.LoadLevel("Game");
+				}
+				else
+					if(EditorUtility.DisplayDialog("Hey wait...", "This Game ID doesn't exist !", "Ok", "")) 
+						print ("No idPartie-idJoueurNoir Matching");
 			}
 			else{
 				if(EditorUtility.DisplayDialog("Hey wait...", "Please enter your own pseudo and enter a correct game number", "Ok", "")) 
