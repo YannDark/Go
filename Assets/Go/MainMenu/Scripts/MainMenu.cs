@@ -45,6 +45,9 @@ public class MainMenu : MonoBehaviour {
 					bdd.InsertPartie(bdd.getIdJoueurWithPseudo(pseudo));
 					bdd.InsertGoban (bdd.getLastIdPartieInserted(),bdd.getIdJoueurWithPseudo(pseudo));
 					MovePierreBlanche1.pseudoNoir = pseudo;
+					MovePierreBlanche1.idJoueurNoir = bdd.getIdJoueurWithPseudo(pseudo);
+					MovePierreBlanche1.idPartie = bdd.getLastIdPartieInserted();
+					MovePierreBlanche1.idGoban = bdd.getLastIdGobanInserted();
 					Application.LoadLevel("Game");
 					print ("Insertion réussi en théorie");
 				}
@@ -79,6 +82,11 @@ public class MainMenu : MonoBehaviour {
 					if (MovePierreBlanche1.pseudoNoir != "")
 					{
 						MovePierreBlanche1.pseudoBlanc = pseudo;
+						MovePierreBlanche1.idJoueurBlanc = bdd.getIdJoueurWithPseudo(pseudo);
+						MovePierreBlanche1.idJoueurNoir = bdd.getIdJoueurWithPseudo(MovePierreBlanche1.pseudoNoir);
+						MovePierreBlanche1.idGoban = bdd.getIdGoban(int.Parse(numeroPartie),MovePierreBlanche1.idJoueurNoir);
+						MovePierreBlanche1.idPartie = int.Parse (numeroPartie);
+
 						Application.LoadLevel("Game");
 					}
 					else

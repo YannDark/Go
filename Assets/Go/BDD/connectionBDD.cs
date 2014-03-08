@@ -570,7 +570,7 @@ public class ConnectionBDD {
 					StringBuilder sb = new StringBuilder();
 					reader.Read();
 					sb.Append(reader.GetString(0).ToString());
-					
+					this.CloseConnection();
 					return sb.ToString();
 				}
 			}
@@ -700,6 +700,55 @@ public class ConnectionBDD {
 					sb.Append(reader.GetInt32(0));
 					this.CloseConnection();
 					return int.Parse(sb.ToString());
+				}
+			}
+			
+		}
+		return 0;
+	}
+
+	public int getLastIdGobanInserted()
+	{
+		if (this.OpenConnection())
+		{
+			using (MySqlCommand cmd = new MySqlCommand("select max(idGoban) from goban.goban;",connection))
+			{
+				using (MySqlDataReader reader = cmd.ExecuteReader())
+				{
+					StringBuilder sb = new StringBuilder();
+					reader.Read();
+					sb.Append(reader.GetInt32(0));
+					this.CloseConnection();
+					return int.Parse(sb.ToString());
+				}
+			}
+			
+		}
+		return 0;
+	}
+
+	public int getIdGoban(int idPartie, int idJoueurNoir)
+	{
+		if (this.OpenConnection())
+		{
+			using (MySqlCommand cmd = new MySqlCommand("select idGoban from goban.goban WHERE idPartie=@idPartie AND joueurEnCours=@idJoueurNoir;",connection))
+			{
+				cmd.Parameters.AddWithValue( "@idPartie", idPartie );
+				cmd.Parameters.AddWithValue( "@idJoueurNoir", idJoueurNoir );
+				using (MySqlDataReader reader = cmd.ExecuteReader())
+				{
+					int cpt = 0;
+					StringBuilder sb = new StringBuilder();
+					while(reader.Read())
+					{
+						cpt++;
+						sb.Append(reader.GetInt32(0));
+					}
+					this.CloseConnection();
+					if (cpt == 0)
+						return 0;
+					else
+						return int.Parse (sb.ToString());
 				}
 			}
 			

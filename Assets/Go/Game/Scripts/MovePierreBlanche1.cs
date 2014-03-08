@@ -32,6 +32,11 @@ public class MovePierreBlanche1 : MonoBehaviour {
 	// les pseudos
 	public static string pseudoNoir;
 	public static string pseudoBlanc;
+
+	public static int idGoban;
+	public static int idPartie;
+	public static int idJoueurBlanc;
+	public static int idJoueurNoir;
 	// Use this for initialization
 	void Start () {
 		Debug.Log (MainMenu.numeroPartie);
@@ -51,7 +56,7 @@ public class MovePierreBlanche1 : MonoBehaviour {
 		scoreBlanc = GameObject.Find ("GUI Text J2");
 		scoreBlanc.guiText.text = "Joueur Blanc\n" + pseudoBlanc + "\nPoints : 0";
 
-
+		Debug.Log (idGoban + "," + idPartie + "," + idJoueurNoir + "," + idJoueurBlanc);
 
 		/*cnxBDD = new connectionBDD ();
 
