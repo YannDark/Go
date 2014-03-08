@@ -87,15 +87,15 @@ public class ConnectionBDD {
 	/// <param name="numeroCoup">Numero coup.</param>
 	/// <param name="natureCoup">Nature coup.</param>
 	/// <returns><c>true</c>, if insert successful, <c>false</c> otherwise.</returns>
-	public bool InsertGoban(int idPartie, int numeroCoup, string natureCoup, int joueurEnCours)
+	public bool InsertGoban(int idPartie, int joueurEnCours)
 	{
 		bool response = false;
 		MySqlCommand query = connection.CreateCommand();
 		
-		query.CommandText = "INSERT INTO goban (idPartie, numeroCoup, natureCoup, joueurEnCours) VALUES (@idPartie, @numeroCoup, @natureCoup, @joueurEnCours)";
+		query.CommandText = "INSERT INTO goban (idPartie, numeroCoup, natureCoup, joueurEnCours) VALUES (@idPartie, @numeroCoup,@natureCoup, @joueurEnCours)";
 		query.Parameters.AddWithValue( "@idPartie", idPartie );
-		query.Parameters.AddWithValue( "@numeroCoup", numeroCoup );
-		query.Parameters.AddWithValue( "@natureCoup", natureCoup );
+		query.Parameters.AddWithValue( "@numeroCoup", 1 );
+		query.Parameters.AddWithValue( "@natureCoup", "Poser" );
 		query.Parameters.AddWithValue( "@joueurEnCours", joueurEnCours );
 		
 		//open connection
@@ -685,6 +685,26 @@ public class ConnectionBDD {
 			
 		}
 		return false;
+	}
+
+	public int getLastIdPartieInserted()
+	{
+		if (this.OpenConnection())
+		{
+			using (MySqlCommand cmd = new MySqlCommand("select max(idPartie) from goban.Partie;",connection))
+			{
+				using (MySqlDataReader reader = cmd.ExecuteReader())
+				{
+					StringBuilder sb = new StringBuilder();
+					reader.Read();
+					sb.Append(reader.GetInt32(0));
+					this.CloseConnection();
+					return int.Parse(sb.ToString());
+				}
+			}
+			
+		}
+		return 0;
 	}
 
 

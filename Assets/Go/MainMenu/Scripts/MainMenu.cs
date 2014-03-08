@@ -43,6 +43,7 @@ public class MainMenu : MonoBehaviour {
 					if (bdd.getIdJoueurWithPseudo(pseudo) == 0)
 						bdd.InsertJoueur(pseudo);
 					bdd.InsertPartie(bdd.getIdJoueurWithPseudo(pseudo));
+					bdd.InsertGoban (bdd.getLastIdPartieInserted(),bdd.getIdJoueurWithPseudo(pseudo));
 					MovePierreBlanche1.pseudoNoir = pseudo;
 					Application.LoadLevel("Game");
 					print ("Insertion réussi en théorie");
