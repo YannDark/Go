@@ -168,17 +168,14 @@ public class ConnectionBDD {
 	/// <param name="heureDebut">Heure debut.</param>
 	/// <param name="heureFin">Heure fin.</param>
 	/// <returns><c>true</c>, if insert successful, <c>false</c> otherwise.</returns>
-	public bool InsertPartie(int idJoueurNoir, int idJoueurBlanc, string etatPartie, DateTime heureDebut, DateTime heureFin)
+	public bool InsertPartie(int idJoueurNoir)
 	{
 		bool response = false;
 		MySqlCommand query = connection.CreateCommand();
 		
-		query.CommandText = "INSERT INTO partie (idJoueurNoir, idJoueurBlanc, etatPartie, heureDebut, heureFin) VALUES (@idJoueurNoir ,@idJoueurBlanc, @etatPartie, @heureDebut, @heureFin)";
+		query.CommandText = "INSERT INTO partie (idJoueurNoir, etatPartie) VALUES (@idJoueurNoir , @etatPartie);";
 		query.Parameters.AddWithValue( "@idJoueurNoir", idJoueurNoir );
-		query.Parameters.AddWithValue( "@idJoueurBlanc", idJoueurBlanc );
-		query.Parameters.AddWithValue( "@etatPartie", etatPartie );
-		query.Parameters.AddWithValue( "@heureDebut", heureDebut );
-		query.Parameters.AddWithValue( "@heureFin", heureFin );
+		query.Parameters.AddWithValue( "@etatPartie", "En cours" );
 		
 		//open connection
 		if (this.OpenConnection())
@@ -571,8 +568,8 @@ public class ConnectionBDD {
 				using (MySqlDataReader reader = cmd.ExecuteReader())
 				{
 					StringBuilder sb = new StringBuilder();
-					while (reader.Read())
-						sb.Append(reader.GetString(0).ToString());
+					reader.Read();
+					sb.Append(reader.GetString(0).ToString());
 					
 					return sb.ToString();
 				}
@@ -580,4 +577,115 @@ public class ConnectionBDD {
 		}
 		return "";
 	}
+
+	public int getIdJoueurWithPseudo(string pseudo)
+	{
+		if (this.OpenConnection())
+		{
+			using (MySqlCommand cmd = new MySqlCommand("SELECT idJoueur, nom FROM goban.Joueurs WHERE nom = @nom;", connection))
+			{
+				cmd.Parameters.AddWithValue("@nom", pseudo);
+				using (MySqlDataReader reader = cmd.ExecuteReader())
+				{
+					int cpt = 0;
+					StringBuilder sb = new StringBuilder();
+					while(reader.Read())
+					{
+						cpt++;
+						sb.Append(reader.GetInt32(0));
+					}
+					this.CloseConnection();
+					if (cpt == 0)
+						return 0;
+					else
+						return int.Parse(sb.ToString());
+				}
+			}
+
+		}
+		return 0;
+	}
+
+	public int getLastIdJoueurInserted()
+	{
+		if (this.OpenConnection())
+		{
+			using (MySqlCommand cmd = new MySqlCommand("select max(idJoueur) from goban.Joueurs;",connection))
+			{
+				using (MySqlDataReader reader = cmd.ExecuteReader())
+				{
+					StringBuilder sb = new StringBuilder();
+					reader.Read();
+					sb.Append(reader.GetInt32(0));
+					this.CloseConnection();
+					return int.Parse(sb.ToString());
+				}
+			}
+
+		}
+		return 0;
+	}
+
+	public bool joinGame(int idPartie, int idJoueurBlanc)
+	{
+		bool response = false;
+		MySqlCommand query = connection.CreateCommand();
+		
+		query.CommandText = "UPDATE partie SET idJoueurBlanc=@idJoueurBlanc, heureDebut=@heureDebut WHERE idPartie=@idPartie";
+		query.Parameters.AddWithValue( "@idPartie", idPartie );
+		query.Parameters.AddWithValue( "@heureDebut", System.DateTime.Now);
+		query.Parameters.AddWithValue( "@idJoueurBlanc", idJoueurBlanc );
+		
+		//open connection
+		if (this.OpenConnection())
+		{
+			query.Connection = connection;
+			
+			try
+			{
+				//Execute command
+				query.ExecuteNonQuery();
+				//close connection
+				this.CloseConnection();
+				response = true;
+			}
+			catch (MySqlException e)
+			{
+				Debug.Log(e.Message);
+				//close connection
+				this.CloseConnection();
+			}
+		}
+		return response;
+	}
+
+	public bool isPartieFull(int idPartie)
+	{
+		if (this.OpenConnection())
+		{
+			using (MySqlCommand cmd = new MySqlCommand("select idJoueurBlanc from goban.partie WHERE idPartie=@idPartie AND idJoueurBlanc IS NOT NULL;",connection))
+			{
+				cmd.Parameters.AddWithValue( "@idPartie", idPartie );
+				using (MySqlDataReader reader = cmd.ExecuteReader())
+				{
+					int cpt = 0;
+					StringBuilder sb = new StringBuilder();
+					while(reader.Read())
+					{
+						cpt++;
+						sb.Append(reader.GetInt32(0));
+					}
+					this.CloseConnection();
+					if (cpt == 0)
+						return false;
+					else
+						return true;
+				}
+			}
+			
+		}
+		return false;
+	}
+
+
 }

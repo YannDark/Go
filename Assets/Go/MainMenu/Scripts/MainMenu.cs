@@ -39,8 +39,10 @@ public class MainMenu : MonoBehaviour {
 				print ("error with database connexion");
 			}
 			else{
-				if(pseudo != "" && pseudo != "pseudo"){
-					bdd.InsertJoueur(pseudo);
+				if(pseudo != ""){
+					if (bdd.getIdJoueurWithPseudo(pseudo) == 0)
+						bdd.InsertJoueur(pseudo);
+					bdd.InsertPartie(bdd.getIdJoueurWithPseudo(pseudo));
 					MovePierreBlanche1.pseudoNoir = pseudo;
 					Application.LoadLevel("Game");
 					print ("Insertion réussi en théorie");
@@ -59,17 +61,30 @@ public class MainMenu : MonoBehaviour {
 		numeroPartie = GUI.TextField (new Rect (10, 200, 140, 30), numeroPartie, 25);
 		if ( GUI.Button(new Rect( 10, 240, 140, 30 ), "Rejoindre une partie" ) )
 		{
-			if(numeroPartie != "" && numeroPartie != "0" && pseudo != "" && pseudo != "pseudo"){
-				print ("on est bon pour le numéro de partie");
-				MovePierreBlanche1.pseudoNoir = bdd.GetPseudoWithIdPartie(int.Parse(numeroPartie));
-				if (MovePierreBlanche1.pseudoNoir != "")
+			if(numeroPartie != "" && numeroPartie != "0" && pseudo != ""){
+				if (bdd.isPartieFull(int.Parse(numeroPartie)))
 				{
-					MovePierreBlanche1.pseudoBlanc = pseudo;
-					Application.LoadLevel("Game");
+					if(EditorUtility.DisplayDialog("Hey wait...", "This Game is still playing by 2 players !", "Ok", "")) 
+						print ("Partie " + numeroPartie + " still playing");
 				}
 				else
-					if(EditorUtility.DisplayDialog("Hey wait...", "This Game ID doesn't exist !", "Ok", "")) 
-						print ("No idPartie-idJoueurNoir Matching");
+				{
+					print ("on est bon pour le numéro de partie");
+					if (bdd.getIdJoueurWithPseudo(pseudo) == 0)
+						bdd.InsertJoueur(pseudo);
+					bdd.joinGame(int.Parse(numeroPartie),bdd.getIdJoueurWithPseudo(pseudo));
+					
+					MovePierreBlanche1.pseudoNoir = bdd.GetPseudoWithIdPartie(int.Parse(numeroPartie));
+					if (MovePierreBlanche1.pseudoNoir != "")
+					{
+						MovePierreBlanche1.pseudoBlanc = pseudo;
+						Application.LoadLevel("Game");
+					}
+					else
+						if(EditorUtility.DisplayDialog("Hey wait...", "This Game ID doesn't exist !", "Ok", "")) 
+							print ("No idPartie-idJoueurNoir Matching");
+				}
+
 			}
 			else{
 				if(EditorUtility.DisplayDialog("Hey wait...", "Please enter your own pseudo and enter a correct game number", "Ok", "")) 
